@@ -1,99 +1,100 @@
-import Link from "next/link";
-import { ArrowRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import type { Metadata } from "next";
+import { ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Hero } from "@/components/marketing/hero";
+import { ValueProp } from "@/components/marketing/value-prop";
+import { ProductGrid } from "@/components/marketing/product-grid";
+import { SocialProof } from "@/components/marketing/social-proof";
+import { CtaSection } from "@/components/marketing/cta-section";
+import {
+  getAllProducts,
+  getTestimonials,
+  type Product,
+} from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
+import { getProductIcon } from "@/lib/icons";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Secure access infrastructure for multi-product teams",
+  description:
+    "PolyAccess provides challenge-protected endpoints, API key lifecycle management, customer portals, and status pages — built for production from day one.",
+  path: "/",
+});
 
 export default function HomePage() {
+  const products = getAllProducts();
+  const { testimonials, logos } = getTestimonials();
+
+  const productCards = products.map((product: Product) => ({
+    slug: product.slug,
+    name: product.name,
+    tagline: product.tagline,
+    description: product.description,
+    icon: getProductIcon(product.icon, "size-5"),
+    href: product.href,
+    status: product.status,
+  }));
+
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background to-muted/40">
-        <div className="container mx-auto flex max-w-6xl flex-col items-center px-4 py-24 text-center md:py-32">
-          <Badge variant="secondary" className="mb-6 gap-1.5">
+      <Hero
+        badge={
+          <Badge variant="secondary" className="gap-1.5">
             <Sparkles className="size-3" aria-hidden />
             Secure access infrastructure for multi-product teams
           </Badge>
-          <h1 className="text-balance text-4xl font-semibold tracking-tight md:text-6xl">
-            PolyAccess — one identity, every product
-          </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-lg text-muted-foreground">
-            Ship challenge-protected endpoints, sign and verify API keys, manage
-            customer access, and broadcast status from a single, hardened
-            platform.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/signup"
-              className={buttonVariants({ size: "lg" })}
-            >
-              Get Started
-              <ArrowRight className="size-4" aria-hidden />
-            </Link>
-            <Link
-              href="/docs"
-              className={buttonVariants({ size: "lg", variant: "outline" })}
-            >
-              View Documentation
-            </Link>
-          </div>
-        </div>
-      </section>
+        }
+        title="PolyAccess — one identity, every product"
+        description="Ship challenge-protected endpoints, sign and verify API keys, manage customer access, and broadcast status from a single, hardened platform."
+        primaryCta={{ label: "Get Started", href: "/login" }}
+        secondaryCta={{ label: "View Products", href: "/products" }}
+      />
 
-      <section
-        aria-labelledby="value-props"
-        className="container mx-auto max-w-6xl px-4 py-20"
-      >
-        <div className="mb-12 max-w-2xl">
-          <h2
-            id="value-props"
-            className="text-3xl font-semibold tracking-tight md:text-4xl"
-          >
-            Built for production from day one
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            Three pillars guide every component we ship.
-          </p>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          <ValueCard
-            icon={<ShieldCheck className="size-5" aria-hidden />}
-            title="Security"
-            description="Cryptographic challenges, scoped keys, and audit-ready event logs across every product surface."
-          />
-          <ValueCard
-            icon={<Zap className="size-5" aria-hidden />}
-            title="Scale"
-            description="Stateless services and edge-friendly primitives that absorb traffic spikes without ceremony."
-          />
-          <ValueCard
-            icon={<Sparkles className="size-5" aria-hidden />}
-            title="Simplicity"
-            description="Drop-in SDKs, predictable APIs, and a portal your customers will actually enjoy using."
-          />
-        </div>
-      </section>
+      <ValueProp
+        eyebrow="Why PolyAccess"
+        title="Built for production from day one"
+        description="Three pillars guide every component we ship."
+        items={[
+          {
+            icon: <ShieldCheck className="size-5" aria-hidden />,
+            title: "Security",
+            description:
+              "Cryptographic challenges, scoped keys, and audit-ready event logs across every product surface.",
+          },
+          {
+            icon: <Zap className="size-5" aria-hidden />,
+            title: "Scale",
+            description:
+              "Stateless services and edge-friendly primitives that absorb traffic spikes without ceremony.",
+          },
+          {
+            icon: <Sparkles className="size-5" aria-hidden />,
+            title: "Simplicity",
+            description:
+              "Drop-in SDKs, predictable APIs, and a portal your customers will actually enjoy using.",
+          },
+        ]}
+      />
+
+      <ProductGrid
+        title="A platform, not a patchwork"
+        description="PolyAccess is a family of products that share an identity model, a control plane, and an audit trail."
+        products={productCards}
+      />
+
+      <SocialProof
+        title="Trusted by teams shipping at scale"
+        description="Engineering leaders use PolyAccess to protect the APIs their businesses depend on."
+        testimonials={testimonials}
+        logos={logos}
+      />
+
+      <CtaSection
+        title="Ready to ship secure access infrastructure?"
+        description="Start with a free trial, or talk to our team about a custom deployment for your organization."
+        primaryCta={{ label: "Start free trial", href: "/signup" }}
+        secondaryCta={{ label: "Contact sales", href: "/contact" }}
+      />
     </>
-  );
-}
-
-function ValueCard({
-  icon,
-  title,
-  description,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}) {
-  return (
-    <Card className="h-full">
-      <CardHeader>
-        <div className="mb-2 flex size-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-          {icon}
-        </div>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-    </Card>
   );
 }

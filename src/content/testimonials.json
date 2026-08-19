@@ -1,0 +1,32 @@
+{
+  "testimonials": [
+    {
+      "quote": "PolyAccess cut our API abuse incidents by 90% in the first month. The challenge proxy is invisible to legitimate users and a brick wall for attackers.",
+      "author": "Priya N",
+      "role": "Head of Engineering",
+      "company": "FinStack",
+      "rating": 5
+    },
+    {
+      "quote": "We replaced three separate access tools with PolyAccess. Our developers now have one SDK, one dashboard, and far fewer 3 a.m. pages.",
+      "author": "Daniel K",
+      "role": "CTO",
+      "company": "CloudForms",
+      "rating": 5
+    },
+    {
+      "quote": "The customer portal let us ship a white-label dashboard in two weeks instead of two quarters. Our enterprise customers love it.",
+      "author": "Elena R",
+      "role": "VP of Product",
+      "company": "SaaScale",
+      "rating": 5
+    }
+  ],
+  "logos": [
+    { "name": "FinStack", "initials": "FS" },
+    { "name": "CloudForms", "initials": "CF" },
+    { "name": "SaaScale", "initials": "SS" },
+    { "name": "DataWeave", "initials": "DW" },
+    { "name": "SecureNet", "initials": "SN" }
+  ]
+}

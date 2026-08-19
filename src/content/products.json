@@ -1,0 +1,128 @@
+{
+  "products": [
+    {
+      "slug": "challenge-proxy",
+      "name": "Challenge Proxy",
+      "tagline": "Cryptographic challenge protection for any endpoint",
+      "description": "Stop bots and unauthorized clients before they reach your origin. Challenge Proxy issues cryptographically signed challenges that are easy for browsers and native apps to solve, but expensive for attackers to scale.",
+      "summary": "Cryptographic challenge protection that sits in front of any API or web endpoint.",
+      "keyBenefit": "Block abuse without CAPTCHAs or rate-limit gymnastics.",
+      "icon": "shield-check",
+      "status": "Available",
+      "href": "/products/challenge-proxy",
+      "externalHref": null,
+      "features": [
+        "Ed25519-signed challenge tokens",
+        "Invisible browser challenge execution",
+        "Per-session and per-action difficulty",
+        "Edge-deployable workers and SDKs",
+        "Real-time risk signals and analytics"
+      ],
+      "benefits": [
+        "Eliminate credential stuffing and scraping at the edge",
+        "Preserve user experience with no visible friction",
+        "Reduce origin load during traffic spikes",
+        "Comply with fraud and abuse SLAs"
+      ],
+      "useCases": [
+        "Protecting high-value login and checkout flows",
+        "Safeguarding public APIs from scraping",
+        "Preventing ticket scalping and inventory abuse"
+      ],
+      "related": ["key-service", "customer-portal"]
+    },
+    {
+      "slug": "key-service",
+      "name": "Key Service",
+      "tagline": "Sign, verify, and rotate API keys at scale",
+      "description": "Key Service gives your team a single place to issue scoped API keys, verify signatures, rotate secrets, and audit usage across every product surface.",
+      "summary": "Scoped API key lifecycle management with signing, verification, and rotation.",
+      "keyBenefit": "Issue and rotate API keys without touching a database on every request.",
+      "icon": "key-round",
+      "status": "Available",
+      "href": "/products/key-service",
+      "externalHref": null,
+      "features": [
+        "HMAC and asymmetric key signing",
+        "Per-key scopes, quotas, and expiration",
+        "Automatic rotation with zero-downtime cutover",
+        "SDKs for Node.js, Python, Go, and Rust",
+        "Audit logs and usage analytics"
+      ],
+      "benefits": [
+        "Reduce secret storage sprawl",
+        "Enforce least-privilege access per key",
+        "Rotate compromised credentials in seconds",
+        "Pass security reviews with full audit trails"
+      ],
+      "useCases": [
+        "API-first SaaS platforms",
+        "Webhook signature verification",
+        "Third-party developer ecosystems"
+      ],
+      "related": ["challenge-proxy", "status-page"]
+    },
+    {
+      "slug": "customer-portal",
+      "name": "Customer Portal",
+      "tagline": "A secure hub for your customers to manage access",
+      "description": "Give customers a branded, self-service portal to manage users, API keys, billing, and support tickets — all gated by your existing identity provider.",
+      "summary": "Branded self-service portal for user, key, and billing management.",
+      "keyBenefit": "Launch a customer-facing portal in days, not quarters.",
+      "icon": "users",
+      "status": "Available",
+      "href": "/products/customer-portal",
+      "externalHref": null,
+      "features": [
+        "White-label branding and custom domains",
+        "Role-based access control",
+        "API key self-service and revocation",
+        "Invoice and usage dashboards",
+        "Support ticket integration"
+      ],
+      "benefits": [
+        "Reduce support volume with self-service",
+        "Improve retention through transparency",
+        "Maintain brand consistency",
+        "Offload identity and billing plumbing"
+      ],
+      "useCases": [
+        "B2B SaaS customer dashboards",
+        "Developer portal experiences",
+        "Enterprise account administration"
+      ],
+      "related": ["key-service", "status-page"]
+    },
+    {
+      "slug": "status-page",
+      "name": "Status Page",
+      "tagline": "Communicate uptime with confidence",
+      "description": "Publish a public or private status page that automatically reflects your health checks, incidents, and scheduled maintenance — hosted on your own domain.",
+      "summary": "Public and private status pages with incident management and subscriptions.",
+      "keyBenefit": "Keep customers informed during incidents without building status infrastructure.",
+      "icon": "activity",
+      "status": "Beta",
+      "href": "/products/status-page",
+      "externalHref": "https://status.polyaccess.tech",
+      "features": [
+        "Synthetic health checks from multiple regions",
+        "Public and private audience modes",
+        "Email and webhook incident notifications",
+        "Custom domain and branding",
+        "Post-incident retrospective publishing"
+      ],
+      "benefits": [
+        "Build trust through transparent communication",
+        "Reduce support tickets during outages",
+        "Meet enterprise uptime reporting requirements",
+        "Own your status narrative"
+      ],
+      "useCases": [
+        "Public SaaS status pages",
+        "Internal engineering dashboards",
+        "Enterprise customer SLAs"
+      ],
+      "related": ["challenge-proxy", "customer-portal"]
+    }
+  ]
+}

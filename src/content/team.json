@@ -1,0 +1,44 @@
+{
+  "members": [
+    {
+      "name": "Alex Rivera",
+      "role": "CEO & Co-Founder",
+      "bio": "Former infrastructure lead at a cloud security unicorn. Obsessed with developer experience and zero-trust architectures.",
+      "initials": "AR",
+      "links": {
+        "twitter": "https://twitter.com",
+        "linkedin": "https://linkedin.com"
+      }
+    },
+    {
+      "name": "Sam Chen",
+      "role": "CTO & Co-Founder",
+      "bio": "Cryptography engineer who helped design key-management systems used by Fortune 500 banks.",
+      "initials": "SC",
+      "links": {
+        "github": "https://github.com",
+        "linkedin": "https://linkedin.com"
+      }
+    },
+    {
+      "name": "Jordan Patel",
+      "role": "Head of Product",
+      "bio": "Product leader with a track record of taking enterprise security tools from zero to product-market fit.",
+      "initials": "JP",
+      "links": {
+        "twitter": "https://twitter.com",
+        "linkedin": "https://linkedin.com"
+      }
+    },
+    {
+      "name": "Morgan Lee",
+      "role": "Lead Designer",
+      "bio": "Design systems expert focused on making complex security products feel simple and trustworthy.",
+      "initials": "ML",
+      "links": {
+        "twitter": "https://twitter.com",
+        "linkedin": "https://linkedin.com"
+      }
+    }
+  ]
+}
