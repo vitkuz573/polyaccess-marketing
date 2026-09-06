@@ -29,100 +29,39 @@
         "Safeguarding public APIs from scraping",
         "Preventing ticket scalping and inventory abuse"
       ],
-      "related": ["key-service", "customer-portal"]
+      "related": ["google-waa-api"]
     },
     {
-      "slug": "key-service",
-      "name": "Key Service",
-      "tagline": "Sign, verify, and rotate API keys at scale",
-      "description": "Key Service gives your team a single place to issue scoped API keys, verify signatures, rotate secrets, and audit usage across every product surface.",
-      "summary": "Scoped API key lifecycle management with signing, verification, and rotation.",
-      "keyBenefit": "Issue and rotate API keys without touching a database on every request.",
-      "icon": "key-round",
+      "slug": "google-waa-api",
+      "name": "Google WAA API",
+      "tagline": "BotGuard attestation tokens for YouTube and Gemini",
+      "description": "A production-grade API for generating Google Web Attestation tokens. Solves real BotGuard challenges via residential proxies and returns tokens verified against YouTube and Gemini in real time.",
+      "summary": "Server-side BotGuard attestation for YouTube and Gemini.",
+      "keyBenefit": "Get tokens that work on the first try, every time.",
+      "icon": "fingerprint",
       "status": "Available",
-      "href": "/products/key-service",
+      "href": "/products/google-waa-api",
       "externalHref": null,
       "features": [
-        "HMAC and asymmetric key signing",
-        "Per-key scopes, quotas, and expiration",
-        "Automatic rotation with zero-downtime cutover",
-        "SDKs for Node.js, Python, Go, and Rust",
-        "Audit logs and usage analytics"
+        "Real BotGuard challenge execution via residential proxies",
+        "Visitor data binding per session",
+        "Signature timestamp auto-extraction for YouTube",
+        "Python SDK with async support",
+        "Verified against YouTube player API and Gemini endpoint"
       ],
       "benefits": [
-        "Reduce secret storage sprawl",
-        "Enforce least-privilege access per key",
-        "Rotate compromised credentials in seconds",
-        "Pass security reviews with full audit trails"
+        "No reverse-engineering Google's BotGuard",
+        "Tokens accepted on first request — verified in CI",
+        "Handles proxy rotation and cookie management",
+        "Drop-in SDK or plain HTTP API"
       ],
       "useCases": [
-        "API-first SaaS platforms",
-        "Webhook signature verification",
-        "Third-party developer ecosystems"
+        "YouTube data extraction pipelines",
+        "Gemini API access automation",
+        "Content monitoring and analytics",
+        "Research and competitive intelligence"
       ],
-      "related": ["challenge-proxy", "status-page"]
-    },
-    {
-      "slug": "customer-portal",
-      "name": "Customer Portal",
-      "tagline": "A secure hub for your customers to manage access",
-      "description": "Give customers a branded, self-service portal to manage users, API keys, billing, and support tickets — all gated by your existing identity provider.",
-      "summary": "Branded self-service portal for user, key, and billing management.",
-      "keyBenefit": "Launch a customer-facing portal in days, not quarters.",
-      "icon": "users",
-      "status": "Available",
-      "href": "/products/customer-portal",
-      "externalHref": null,
-      "features": [
-        "White-label branding and custom domains",
-        "Role-based access control",
-        "API key self-service and revocation",
-        "Invoice and usage dashboards",
-        "Support ticket integration"
-      ],
-      "benefits": [
-        "Reduce support volume with self-service",
-        "Improve retention through transparency",
-        "Maintain brand consistency",
-        "Offload identity and billing plumbing"
-      ],
-      "useCases": [
-        "B2B SaaS customer dashboards",
-        "Developer portal experiences",
-        "Enterprise account administration"
-      ],
-      "related": ["key-service", "status-page"]
-    },
-    {
-      "slug": "status-page",
-      "name": "Status Page",
-      "tagline": "Communicate uptime with confidence",
-      "description": "Publish a public or private status page that automatically reflects your health checks, incidents, and scheduled maintenance — hosted on your own domain.",
-      "summary": "Public and private status pages with incident management and subscriptions.",
-      "keyBenefit": "Keep customers informed during incidents without building status infrastructure.",
-      "icon": "activity",
-      "status": "Beta",
-      "href": "/products/status-page",
-      "externalHref": "https://status.polyaccess.tech",
-      "features": [
-        "Synthetic health checks from multiple regions",
-        "Public and private audience modes",
-        "Email and webhook incident notifications",
-        "Custom domain and branding",
-        "Post-incident retrospective publishing"
-      ],
-      "benefits": [
-        "Build trust through transparent communication",
-        "Reduce support tickets during outages",
-        "Meet enterprise uptime reporting requirements",
-        "Own your status narrative"
-      ],
-      "useCases": [
-        "Public SaaS status pages",
-        "Internal engineering dashboards",
-        "Enterprise customer SLAs"
-      ],
-      "related": ["challenge-proxy", "customer-portal"]
+      "related": ["challenge-proxy"]
     }
   ]
 }

@@ -1,5 +1,5 @@
 import type { Product } from "@/lib/content";
-import { ShieldCheck, KeyRound, Users, Activity } from "lucide-react";
+import { ShieldCheck, KeyRound, Users, Activity, Fingerprint } from "lucide-react";
 import type { ReactNode } from "react";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>> = {
@@ -7,6 +7,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string; "aria-h
   "key-round": KeyRound,
   users: Users,
   activity: Activity,
+  fingerprint: Fingerprint,
 };
 
 export function getProductIcon(

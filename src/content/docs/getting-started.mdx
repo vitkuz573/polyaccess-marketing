@@ -1,0 +1,87 @@
+---
+title: Getting Started
+description: Install, configure, and ship your first PolyAccess-protected endpoint in under five minutes.
+category: Guides
+publishedAt: 2026-01-01
+updatedAt: 2026-01-15
+tags: ["quickstart", "setup", "installation"]
+order: 1
+---
+
+# Getting Started
+
+PolyAccess is a suite of access primitives that share a single identity model and control plane. This guide walks you through creating an account, installing the SDK, and protecting your first endpoint.
+
+## Create an account
+
+Sign up at [portal.polyaccess.tech](https://portal.polyaccess.tech). After email verification you will land in the workspace dashboard where you can create projects and invite teammates.
+
+## Install the SDK
+
+PolyAccess publishes SDKs for TypeScript, Python, and Go. Choose the one that matches your stack.
+
+```bash
+npm install @polyaccess/sdk
+```
+
+For Python:
+
+```bash
+pip install polyaccess
+```
+
+## Configure your environment
+
+Copy the workspace key from **Settings > API Keys** and export it in your environment.
+
+```bash
+export POLYACCESS_API_KEY=pa_live_...
+export POLYACCESS_WORKSPACE=ws_...
+```
+
+In a Next.js or Vite project you can use a `.env.local` file:
+
+```env
+POLYACCESS_API_KEY=pa_live_...
+POLYACCESS_WORKSPACE=ws_...
+```
+
+## Protect your first endpoint
+
+The following snippet challenges every request to `/api/billing/*` with a cryptographic challenge before forwarding it to your origin.
+
+```ts
+import { PolyAccessClient } from "@polyaccess/sdk";
+
+const client = new PolyAccessClient({
+  apiKey: process.env.POLYACCESS_API_KEY!,
+  workspace: process.env.POLYACCESS_WORKSPACE!,
+});
+
+export const middleware = client.challengeMiddleware({
+  include: ["/api/billing/(.*)"],
+  challengeTtl: 30,
+});
+```
+
+## Verify it works
+
+Run your application locally and send a request to a protected route. You should receive a `401 Unauthorized` response with a challenge header when the challenge is missing, and a successful proxied response once the challenge is satisfied.
+
+```bash
+curl -i http://localhost:3000/api/billing/invoices
+```
+
+Expected response headers:
+
+```http
+HTTP/1.1 401 Unauthorized
+X-PolyAccess-Challenge: required
+X-PolyAccess-Challenge-Ttl: 30
+```
+
+## Next steps
+
+- Read the [Authentication](/docs/authentication) guide to learn how requests are signed and verified.
+- Browse the [API Reference](/docs/api-reference) for endpoint-level details.
+- Subscribe to [Webhooks](/docs/webhooks) to receive real-time access events.

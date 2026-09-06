@@ -18,7 +18,7 @@ import { getProductIcon } from "@/lib/icons";
 export const metadata: Metadata = pageMetadata({
   title: "Products",
   description:
-    "Explore the PolyAccess product family: challenge proxies, API key management, customer portals, and status pages.",
+    "Explore PolyAccess: bot protection via cryptographic challenges and Google BotGuard attestation tokens.",
   path: "/products",
 });
 
@@ -57,7 +57,7 @@ export default function ProductsPage() {
 
       <section className="py-16 md:py-24">
         <Container>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2">
             {productCards.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
@@ -72,10 +72,10 @@ export default function ProductsPage() {
               How products work together
             </h2>
             <p className="mt-4 text-pretty text-muted-foreground">
-              Use Challenge Proxy to protect public surfaces, Key Service to
-              sign and verify internal requests, Customer Portal to delegate
-              access management, and Status Page to communicate health. All
-              share the same identity, billing, and event stream.
+              Challenge Proxy protects your public endpoints with cryptographic
+              challenges. Google WAA API generates BotGuard attestation tokens
+              for YouTube and Gemini. Both share the same authentication,
+              rate limiting, and audit trail.
             </p>
           </div>
         </Container>

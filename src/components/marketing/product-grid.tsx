@@ -84,7 +84,7 @@ export function ProductGrid({ title, description, products }: ProductGridProps) 
             </p>
           ) : null}
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2">
           {products.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}

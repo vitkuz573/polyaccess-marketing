@@ -17,7 +17,7 @@ import { getProductIcon } from "@/lib/icons";
 export const metadata: Metadata = pageMetadata({
   title: "Secure access infrastructure for multi-product teams",
   description:
-    "PolyAccess provides challenge-protected endpoints, API key lifecycle management, customer portals, and status pages — built for production from day one.",
+    "PolyAccess provides bot protection via cryptographic challenges and Google BotGuard attestation tokens — built for production from day one.",
   path: "/",
 });
 
@@ -45,7 +45,7 @@ export default function HomePage() {
           </Badge>
         }
         title="PolyAccess — one identity, every product"
-        description="Ship challenge-protected endpoints, sign and verify API keys, manage customer access, and broadcast status from a single, hardened platform."
+        description="Protect endpoints with cryptographic challenges and generate Google BotGuard attestation tokens — all from a single, hardened platform."
         primaryCta={{ label: "Get Started", href: "/login" }}
         secondaryCta={{ label: "View Products", href: "/products" }}
       />
