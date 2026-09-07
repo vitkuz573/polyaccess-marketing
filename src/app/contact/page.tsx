@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { PageHeader } from "@/components/layout/page-header";
 import { ContactForm } from "@/components/marketing/contact-form";
 import {
   Card,
@@ -73,12 +72,24 @@ async function submitContact(values: {
 export default function ContactPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Contact"
-        title="Let's talk"
-        description="Sales, support, partnerships, or general questions — we respond within one business day."
-      />
+      {/* Hero */}
+      <section className="border-b border-border/40 bg-gradient-to-b from-background to-muted/30 py-16 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="text-xs font-medium uppercase tracking-wider text-primary">
+              Contact
+            </span>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+              Let&apos;s talk
+            </h1>
+            <p className="mt-6 text-pretty text-lg text-muted-foreground">
+              Sales, support, partnerships, or general questions — we respond within one business day.
+            </p>
+          </div>
+        </Container>
+      </section>
 
+      {/* Form + Info */}
       <section className="py-16 md:py-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-3">

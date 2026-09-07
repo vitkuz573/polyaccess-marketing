@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Shield, Target, Users } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { PageHeader } from "@/components/layout/page-header";
 import { TeamGrid } from "@/components/marketing/team-grid";
 import { CtaSection } from "@/components/marketing/cta-section";
 import { getTeam } from "@/lib/content";
@@ -46,68 +45,92 @@ export default function AboutPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="About"
-        title="We build the access layer modern teams need"
-        description="PolyAccess was founded to solve a problem we faced ourselves: every product needs secure access, but stitching together identity, keys, challenges, and status pages slows teams down."
-      />
+      {/* Hero */}
+      <section className="border-b border-border/40 bg-gradient-to-b from-background to-muted/30 py-16 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="text-xs font-medium uppercase tracking-wider text-primary">
+              About
+            </span>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+              We build the access layer modern teams need
+            </h1>
+            <p className="mt-6 text-pretty text-lg text-muted-foreground">
+              PolyAccess is a personal project that grew into a coherent access platform — built out of curiosity, maintained because it works.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-      <section className="py-16 md:py-24">
+      {/* Story */}
+      <section className="border-b border-border/40 bg-background py-16 md:py-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
+              <span className="text-xs font-medium uppercase tracking-wider text-primary">
                 Our story
+              </span>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                From repeated pain to a unified platform
               </h2>
-              <div className="mt-6 space-y-4 text-pretty text-muted-foreground">
-                <p>
-                  PolyAccess started when two infrastructure engineers kept
-                  rebuilding the same access primitives for different products:
-                  challenge-protected signups, scoped API keys, customer
-                  dashboards, and public status pages.
-                </p>
-                <p>
-                  We realized that every product team was solving the same
-                  problems in slightly different ways, and that the seams
-                  between those solutions were where security incidents happened.
-                </p>
-                <p>
-                  So we built PolyAccess: a unified platform where identity,
-                  access, and observability share a single control plane. Today,
-                  teams of every size use PolyAccess to ship secure products
-                  faster.
-                </p>
-              </div>
             </div>
-
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-                Mission & values
-              </h2>
-              <div className="mt-6 grid gap-4">
-                {VALUES.map((value) => (
-                  <Card key={value.title}>
-                    <CardHeader>
-                      <div className="mb-2 flex size-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-                        {value.icon}
-                      </div>
-                      <CardTitle>{value.title}</CardTitle>
-                      <CardDescription>{value.description}</CardDescription>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </div>
+            <div className="space-y-4 text-pretty text-muted-foreground">
+              <p>
+                PolyAccess started as a personal project — a way to explore
+                how access primitives like attestation, API keys, and status
+                pages could work together under one roof.
+              </p>
+              <p>
+                What began as an experiment grew into a coherent platform:
+                shared authentication, per-customer billing, and a unified
+                audit trail across every component.
+              </p>
+              <p>
+                Today PolyAccess is a hosted platform with per-customer billing,
+                usage-based pricing, and a unified audit trail across every
+                component. Teams connect via API and get production-grade access
+                infrastructure without managing any of it themselves.
+              </p>
             </div>
           </div>
         </Container>
       </section>
 
+      {/* Values */}
+      <section className="border-b border-border/40 bg-muted/20 py-16 md:py-24">
+        <Container>
+          <div className="mb-10 max-w-2xl">
+            <span className="text-xs font-medium uppercase tracking-wider text-primary">
+              Mission & values
+            </span>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              What guides us
+            </h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {VALUES.map((value) => (
+              <Card key={value.title}>
+                <CardHeader>
+                  <div className="mb-2 flex size-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                    {value.icon}
+                  </div>
+                  <CardTitle>{value.title}</CardTitle>
+                  <CardDescription>{value.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Team */}
       <TeamGrid
         title="Meet the team"
         description="A small team with deep experience in security, distributed systems, and developer tooling."
         members={team}
       />
 
+      {/* CTA */}
       <CtaSection
         title="Join us"
         description="We are always looking for people who care about security, developer experience, and building things that last."

@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { appUrl, siteName } from "@/lib/env";
 
-const geistSans = Geist({
+const geistSans = localFont({
+  src: "../../public/fonts/geist-regular.woff2",
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: "../../public/fonts/geist-mono-regular.woff2",
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -23,12 +25,13 @@ export const metadata: Metadata = {
     template: `%s | ${siteName()}`,
   },
   description:
-    "PolyAccess provides secure access infrastructure for multi-product teams: challenge-protected endpoints, API key management, customer portals, and status pages.",
+    "PolyAccess provides secure access infrastructure for multi-product teams: attestation challenge aggregation, API key management, customer portals, and status pages.",
   applicationName: siteName(),
   keywords: [
     "access infrastructure",
     "API security",
-    "challenge proxy",
+    "attestation",
+    "BotGuard",
     "API keys",
     "customer portal",
     "status page",

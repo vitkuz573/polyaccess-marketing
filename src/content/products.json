@@ -3,61 +3,62 @@
     {
       "slug": "challenge-proxy",
       "name": "Challenge Proxy",
-      "tagline": "Cryptographic challenge protection for any endpoint",
-      "description": "Stop bots and unauthorized clients before they reach your origin. Challenge Proxy issues cryptographically signed challenges that are easy for browsers and native apps to solve, but expensive for attackers to scale.",
-      "summary": "Cryptographic challenge protection that sits in front of any API or web endpoint.",
-      "keyBenefit": "Block abuse without CAPTCHAs or rate-limit gymnastics.",
+      "tagline": "Unified attestation challenge aggregation across providers",
+      "description": "Fetch attestation challenges from multiple upstream providers through a single REST API. Challenge Proxy normalizes different protocols and formats, handles provider failover, and caches results — so your SDK can focus on executing the VM and assembling tokens.",
+      "summary": "Multi-source challenge fetching with circuit breaking, fallback, and caching.",
+      "keyBenefit": "One API for all upstream challenge sources, with automatic failover.",
       "icon": "shield-check",
       "status": "Available",
       "href": "/products/challenge-proxy",
       "externalHref": null,
       "features": [
-        "Ed25519-signed challenge tokens",
-        "Invisible browser challenge execution",
-        "Per-session and per-action difficulty",
-        "Edge-deployable workers and SDKs",
-        "Real-time risk signals and analytics"
+        "Unified REST API across multiple upstream providers",
+        "Automatic provider failover with circuit breaker and stale cache",
+        "Per-client API key authentication and usage billing",
+        "Built-in rate limiting with sliding-window counters",
+        "Redis or in-memory caching with configurable TTL"
       ],
       "benefits": [
-        "Eliminate credential stuffing and scraping at the edge",
-        "Preserve user experience with no visible friction",
-        "Reduce origin load during traffic spikes",
-        "Comply with fraud and abuse SLAs"
+        "No need to maintain fragile integrations with each upstream",
+        "Graceful degradation when a provider is unavailable",
+        "Per-customer usage tracking and audit trail",
+        "Drop-in replacement for homegrown challenge-fetching code"
       ],
       "useCases": [
-        "Protecting high-value login and checkout flows",
-        "Safeguarding public APIs from scraping",
-        "Preventing ticket scalping and inventory abuse"
+        "Server-side attestation for content and data pipelines",
+        "Multi-source token generation with unified interface",
+        "Multi-product teams sharing a single challenge infrastructure",
+        "Replacing brittle direct upstream integrations"
       ],
-      "related": ["google-waa-api"]
+      "related": ["attest-api"]
     },
     {
-      "slug": "google-waa-api",
-      "name": "Google WAA API",
-      "tagline": "BotGuard attestation tokens for YouTube and Gemini",
-      "description": "A production-grade API for generating Google Web Attestation tokens. Solves real BotGuard challenges via residential proxies and returns tokens verified against YouTube and Gemini in real time.",
-      "summary": "Server-side BotGuard attestation for YouTube and Gemini.",
+      "slug": "attest-api",
+      "name": "Attest API",
+      "tagline": "End-to-end attestation token generation with verification",
+      "description": "A production-grade API for generating attestation tokens. Executes BotGuard challenges via residential proxies and returns tokens verified against target endpoints in real time.",
+      "summary": "Server-side attestation with end-to-end verification.",
       "keyBenefit": "Get tokens that work on the first try, every time.",
       "icon": "fingerprint",
       "status": "Available",
-      "href": "/products/google-waa-api",
+      "href": "/products/attest-api",
       "externalHref": null,
       "features": [
         "Real BotGuard challenge execution via residential proxies",
         "Visitor data binding per session",
-        "Signature timestamp auto-extraction for YouTube",
+        "Signature timestamp auto-extraction",
         "Python SDK with async support",
-        "Verified against YouTube player API and Gemini endpoint"
+        "Verified against target endpoints before delivery"
       ],
       "benefits": [
-        "No reverse-engineering Google's BotGuard",
+        "No reverse-engineering anti-abuse VMs",
         "Tokens accepted on first request — verified in CI",
         "Handles proxy rotation and cookie management",
         "Drop-in SDK or plain HTTP API"
       ],
       "useCases": [
-        "YouTube data extraction pipelines",
-        "Gemini API access automation",
+        "Content and data extraction pipelines",
+        "API access automation for supported services",
         "Content monitoring and analytics",
         "Research and competitive intelligence"
       ],

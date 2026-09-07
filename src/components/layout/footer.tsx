@@ -33,9 +33,9 @@ export function Footer() {
               <span>PolyAccess</span>
             </Link>
             <p className="max-w-xs text-sm text-muted-foreground">
-              Secure access infrastructure for multi-product teams. Ship
-              challenge-protected endpoints, API keys, customer portals, and
-              status pages.
+              Secure access infrastructure for multi-product teams.
+              Attestation, API keys, customer portals, and status pages
+              — from a single platform.
             </p>
           </div>
 

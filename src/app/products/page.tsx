@@ -18,7 +18,7 @@ import { getProductIcon } from "@/lib/icons";
 export const metadata: Metadata = pageMetadata({
   title: "Products",
   description:
-    "Explore PolyAccess: bot protection via cryptographic challenges and Google BotGuard attestation tokens.",
+    "Explore PolyAccess: unified attestation challenge aggregation and BotGuard token generation.",
   path: "/products",
 });
 
@@ -72,10 +72,11 @@ export default function ProductsPage() {
               How products work together
             </h2>
             <p className="mt-4 text-pretty text-muted-foreground">
-              Challenge Proxy protects your public endpoints with cryptographic
-              challenges. Google WAA API generates BotGuard attestation tokens
-              for YouTube and Gemini. Both share the same authentication,
-              rate limiting, and audit trail.
+              Challenge Proxy fetches attestation challenges from multiple
+              upstream providers through a unified API with automatic failover.
+              Attest API takes those challenges, executes the BotGuard VM,
+              and returns verified attestation tokens. Both share the same
+              authentication, rate limiting, and audit trail.
             </p>
           </div>
         </Container>

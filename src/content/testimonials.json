@@ -1,7 +1,7 @@
 {
   "testimonials": [
     {
-      "quote": "PolyAccess cut our API abuse incidents by 90% in the first month. The challenge proxy is invisible to legitimate users and a brick wall for attackers.",
+      "quote": "PolyAccess replaced our patchwork of provider-specific integrations. The challenge proxy normalizes everything behind one API, and the fallback logic alone saved us from three upstream outages last quarter.",
       "author": "Priya N",
       "role": "Head of Engineering",
       "company": "FinStack",
