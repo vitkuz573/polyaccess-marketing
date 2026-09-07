@@ -1,5 +1,8 @@
+"use client";
+
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
@@ -37,7 +40,13 @@ export function CtaSection({
       )}
     >
       <Container>
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
+          className="mx-auto flex max-w-3xl flex-col items-center text-center"
+        >
           <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
             {title}
           </h2>
@@ -71,7 +80,7 @@ export function CtaSection({
             </div>
           )}
           {children}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

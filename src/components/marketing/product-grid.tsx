@@ -1,5 +1,8 @@
+"use client";
+
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import {
   Card,
@@ -67,11 +70,27 @@ interface ProductGridProps {
   products: ProductCardData[];
 }
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
+
 export function ProductGrid({ title, description, products }: ProductGridProps) {
   return (
     <section aria-labelledby="products-heading" className="py-20 md:py-24">
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="mb-12 max-w-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          className="mb-12 max-w-2xl"
+        >
           <h2
             id="products-heading"
             className="text-3xl font-semibold tracking-tight md:text-4xl"
@@ -83,12 +102,20 @@ export function ProductGrid({ title, description, products }: ProductGridProps) 
               {description}
             </p>
           ) : null}
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2">
+        </motion.div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid gap-6 sm:grid-cols-2"
+        >
           {products.map((product) => (
-            <ProductCard key={product.slug} product={product} />
+            <motion.div key={product.slug} variants={fadeUp}>
+              <ProductCard product={product} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

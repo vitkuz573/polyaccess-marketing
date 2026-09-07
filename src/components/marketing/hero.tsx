@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -20,6 +23,21 @@ interface HeroProps {
   align?: "center" | "left";
   className?: string;
 }
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
+
+const fadeIn = {
+  hidden: { opacity: 0, filter: "blur(6px)" },
+  visible: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
 
 export function Hero({
   badge,
@@ -44,49 +62,63 @@ export function Hero({
           isCenter ? "items-center text-center" : "items-start text-left",
         )}
       >
-        {badge ? (
-          <div className="mb-6 inline-flex items-center">{badge}</div>
-        ) : null}
-        <h1
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
           className={cn(
-            "text-balance text-4xl font-semibold tracking-tight md:text-6xl",
-            isCenter ? "max-w-4xl" : "max-w-3xl",
+            "flex flex-col",
+            isCenter ? "items-center text-center" : "items-start text-left",
           )}
         >
-          {title}
-        </h1>
-        <p
-          className={cn(
-            "mt-6 text-pretty text-lg text-muted-foreground md:text-xl",
-            isCenter ? "max-w-2xl" : "max-w-2xl",
+          {badge ? (
+            <motion.div variants={fadeIn} className="mb-6 inline-flex items-center">
+              {badge}
+            </motion.div>
+          ) : null}
+          <motion.h1
+            variants={fadeUp}
+            className={cn(
+              "text-balance text-4xl font-semibold tracking-tight md:text-6xl",
+              isCenter ? "max-w-4xl" : "max-w-3xl",
+            )}
+          >
+            {title}
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            className={cn(
+              "mt-6 text-pretty text-lg text-muted-foreground md:text-xl",
+              isCenter ? "max-w-2xl" : "max-w-2xl",
+            )}
+          >
+            {description}
+          </motion.p>
+          {(primaryCta || secondaryCta) && (
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-3">
+              {primaryCta && (
+                <Link
+                  href={primaryCta.href}
+                  target={primaryCta.external ? "_blank" : undefined}
+                  rel={primaryCta.external ? "noopener noreferrer" : undefined}
+                  className={buttonVariants({ size: "lg" })}
+                >
+                  {primaryCta.label}
+                </Link>
+              )}
+              {secondaryCta && (
+                <Link
+                  href={secondaryCta.href}
+                  target={secondaryCta.external ? "_blank" : undefined}
+                  rel={secondaryCta.external ? "noopener noreferrer" : undefined}
+                  className={buttonVariants({ size: "lg", variant: "outline" })}
+                >
+                  {secondaryCta.label}
+                </Link>
+              )}
+            </motion.div>
           )}
-        >
-          {description}
-        </p>
-        {(primaryCta || secondaryCta) && (
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            {primaryCta && (
-              <Link
-                href={primaryCta.href}
-                target={primaryCta.external ? "_blank" : undefined}
-                rel={primaryCta.external ? "noopener noreferrer" : undefined}
-                className={buttonVariants({ size: "lg" })}
-              >
-                {primaryCta.label}
-              </Link>
-            )}
-            {secondaryCta && (
-              <Link
-                href={secondaryCta.href}
-                target={secondaryCta.external ? "_blank" : undefined}
-                rel={secondaryCta.external ? "noopener noreferrer" : undefined}
-                className={buttonVariants({ size: "lg", variant: "outline" })}
-              >
-                {secondaryCta.label}
-              </Link>
-            )}
-          </div>
-        )}
+        </motion.div>
       </div>
     </section>
   );

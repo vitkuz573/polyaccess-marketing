@@ -1,4 +1,7 @@
+"use client";
+
 import { Star } from "lucide-react";
+import { motion } from "motion/react";
 import {
   Card,
   CardContent,
@@ -28,6 +31,16 @@ interface SocialProofProps {
   logos?: Logo[];
 }
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
+
 export function SocialProof({
   title,
   description,
@@ -40,7 +53,13 @@ export function SocialProof({
       className="border-y border-border/40 bg-muted/20 py-20 md:py-24"
     >
       <Container>
-        <div className="mb-12 max-w-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          className="mb-12 max-w-2xl"
+        >
           <h2
             id="social-proof-heading"
             className="text-3xl font-semibold tracking-tight md:text-4xl"
@@ -52,26 +71,41 @@ export function SocialProof({
               {description}
             </p>
           ) : null}
-        </div>
+        </motion.div>
 
         {logos && logos.length > 0 && (
-          <div className="mb-12 flex flex-wrap items-center justify-center gap-4 md:gap-8">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mb-12 flex flex-wrap items-center justify-center gap-4 md:gap-8"
+          >
             {logos.map((logo) => (
-              <div
+              <motion.div
                 key={logo.name}
+                variants={fadeUp}
                 className="flex h-12 items-center justify-center rounded-lg border border-border bg-background px-4 text-sm font-medium text-muted-foreground"
               >
                 {logo.initials}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+        >
           {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.author} testimonial={testimonial} />
+            <motion.div key={testimonial.author} variants={fadeUp}>
+              <TestimonialCard testimonial={testimonial} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
@@ -96,7 +130,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           </div>
         )}
         <CardDescription className="text-base text-foreground">
-          “{testimonial.quote}”
+          &ldquo;{testimonial.quote}&rdquo;
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -108,5 +142,3 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     </Card>
   );
 }
-
-

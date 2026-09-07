@@ -1,4 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { motion } from "motion/react";
 import {
   Card,
   CardDescription,
@@ -20,6 +23,16 @@ interface ValuePropProps {
   items: ValuePropItem[];
 }
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
+
 export function ValueProp({ eyebrow, title, description, items }: ValuePropProps) {
   return (
     <section
@@ -27,7 +40,13 @@ export function ValueProp({ eyebrow, title, description, items }: ValuePropProps
       className="border-b border-border/40 bg-background py-20 md:py-24"
     >
       <Container>
-        <div className="mb-12 max-w-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          className="mb-12 max-w-2xl"
+        >
           {eyebrow ? (
             <span className="text-xs font-medium uppercase tracking-wider text-primary">
               {eyebrow}
@@ -44,20 +63,28 @@ export function ValueProp({ eyebrow, title, description, items }: ValuePropProps
               {description}
             </p>
           ) : null}
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        </motion.div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid gap-6 md:grid-cols-3"
+        >
           {items.map((item) => (
-            <Card key={item.title} className="h-full">
-              <CardHeader>
-                <div className="mb-2 flex size-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-                  {item.icon}
-                </div>
-                <CardTitle>{item.title}</CardTitle>
-                <CardDescription>{item.description}</CardDescription>
-              </CardHeader>
-            </Card>
+            <motion.div key={item.title} variants={fadeUp}>
+              <Card className="h-full">
+                <CardHeader>
+                  <div className="mb-2 flex size-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                    {item.icon}
+                  </div>
+                  <CardTitle>{item.title}</CardTitle>
+                  <CardDescription>{item.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
