@@ -31,16 +31,6 @@ interface SocialProofProps {
   logos?: Logo[];
 }
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-
 export function SocialProof({
   title,
   description,
@@ -54,10 +44,10 @@ export function SocialProof({
     >
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
           className="mb-12 max-w-2xl"
         >
           <h2
@@ -74,38 +64,50 @@ export function SocialProof({
         </motion.div>
 
         {logos && logos.length > 0 && (
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            className="mb-12 flex flex-wrap items-center justify-center gap-4 md:gap-8"
-          >
-            {logos.map((logo) => (
+          <div className="mb-12 flex flex-wrap items-center justify-center gap-4 md:gap-8">
+            {logos.map((logo, i) => (
               <motion.div
                 key={logo.name}
-                variants={fadeUp}
+                initial={{ opacity: 0, scale: 0.7 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{
+                  duration: 0.4,
+                  delay: i * 0.06,
+                  ease: [0.25, 0.1, 0.25, 1] as const,
+                }}
                 className="flex h-12 items-center justify-center rounded-lg border border-border bg-background px-4 text-sm font-medium text-muted-foreground"
               >
                 {logo.initials}
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         )}
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {testimonials.map((testimonial) => (
-            <motion.div key={testimonial.author} variants={fadeUp}>
-              <TestimonialCard testimonial={testimonial} />
-            </motion.div>
-          ))}
-        </motion.div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((testimonial, i) => {
+            const directions = [
+              { opacity: 0, x: -30, y: 20 },
+              { opacity: 0, y: 40 },
+              { opacity: 0, x: 30, y: 20 },
+            ];
+            return (
+              <motion.div
+                key={testimonial.author}
+                initial={directions[i % 3]}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{
+                  duration: 0.5,
+                  delay: i * 0.1,
+                  ease: [0.25, 0.1, 0.25, 1] as const,
+                }}
+              >
+                <TestimonialCard testimonial={testimonial} />
+              </motion.div>
+            );
+          })}
+        </div>
       </Container>
     </section>
   );

@@ -24,21 +24,6 @@ interface HeroProps {
   className?: string;
 }
 
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-
-const fadeIn = {
-  hidden: { opacity: 0, filter: "blur(6px)" },
-  visible: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-
 export function Hero({
   badge,
   title,
@@ -62,22 +47,28 @@ export function Hero({
           isCenter ? "items-center text-center" : "items-start text-left",
         )}
       >
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="visible"
+        <div
           className={cn(
             "flex flex-col",
             isCenter ? "items-center text-center" : "items-start text-left",
           )}
         >
           {badge ? (
-            <motion.div variants={fadeIn} className="mb-6 inline-flex items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+              className="mb-6 inline-flex items-center"
+            >
               {badge}
             </motion.div>
           ) : null}
           <motion.h1
-            variants={fadeUp}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] as const }}
             className={cn(
               "text-balance text-4xl font-semibold tracking-tight md:text-6xl",
               isCenter ? "max-w-4xl" : "max-w-3xl",
@@ -86,7 +77,10 @@ export function Hero({
             {title}
           </motion.h1>
           <motion.p
-            variants={fadeUp}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] as const }}
             className={cn(
               "mt-6 text-pretty text-lg text-muted-foreground md:text-xl",
               isCenter ? "max-w-2xl" : "max-w-2xl",
@@ -95,7 +89,13 @@ export function Hero({
             {description}
           </motion.p>
           {(primaryCta || secondaryCta) && (
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] as const }}
+              className="mt-10 flex flex-wrap items-center gap-3"
+            >
               {primaryCta && (
                 <Link
                   href={primaryCta.href}
@@ -118,7 +118,7 @@ export function Hero({
               )}
             </motion.div>
           )}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

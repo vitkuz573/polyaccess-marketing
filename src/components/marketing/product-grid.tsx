@@ -70,25 +70,15 @@ interface ProductGridProps {
   products: ProductCardData[];
 }
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-
 export function ProductGrid({ title, description, products }: ProductGridProps) {
   return (
     <section aria-labelledby="products-heading" className="py-20 md:py-24">
       <div className="container mx-auto max-w-6xl px-4">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
           className="mb-12 max-w-2xl"
         >
           <h2
@@ -103,19 +93,23 @@ export function ProductGrid({ title, description, products }: ProductGridProps) 
             </p>
           ) : null}
         </motion.div>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid gap-6 sm:grid-cols-2"
-        >
-          {products.map((product) => (
-            <motion.div key={product.slug} variants={fadeUp}>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {products.map((product, i) => (
+            <motion.div
+              key={product.slug}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30, y: 20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{
+                duration: 0.5,
+                delay: i * 0.08,
+                ease: [0.25, 0.1, 0.25, 1] as const,
+              }}
+            >
               <ProductCard product={product} />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

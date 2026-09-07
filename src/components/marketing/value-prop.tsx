@@ -23,16 +23,6 @@ interface ValuePropProps {
   items: ValuePropItem[];
 }
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-
 export function ValueProp({ eyebrow, title, description, items }: ValuePropProps) {
   return (
     <section
@@ -41,10 +31,10 @@ export function ValueProp({ eyebrow, title, description, items }: ValuePropProps
     >
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
           className="mb-12 max-w-2xl"
         >
           {eyebrow ? (
@@ -64,15 +54,19 @@ export function ValueProp({ eyebrow, title, description, items }: ValuePropProps
             </p>
           ) : null}
         </motion.div>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid gap-6 md:grid-cols-3"
-        >
-          {items.map((item) => (
-            <motion.div key={item.title} variants={fadeUp}>
+        <div className="grid gap-6 md:grid-cols-3">
+          {items.map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{
+                duration: 0.5,
+                delay: i * 0.1,
+                ease: [0.25, 0.1, 0.25, 1] as const,
+              }}
+            >
               <Card className="h-full">
                 <CardHeader>
                   <div className="mb-2 flex size-9 items-center justify-center rounded-md bg-primary/10 text-primary">
@@ -84,7 +78,7 @@ export function ValueProp({ eyebrow, title, description, items }: ValuePropProps
               </Card>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </Container>
     </section>
   );
